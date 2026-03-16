@@ -1,4 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─────────────────────────────────────────────
+   Theme mapping: File 2's dark amber palette
+   → File 1's shadcn/Tailwind v4 CSS variables
+───────────────────────────────────────────── */
+@theme inline {
+  --color-background:               var(--background);
+  --color-foreground:               var(--foreground);
+  --color-card:                     var(--card);
+  --color-card-foreground:          var(--card-foreground);
+  --color-popover:                  var(--popover);
+  --color-popover-foreground:       var(--popover-foreground);
+  --color-primary:                  var(--primary);
+  --color-primary-foreground:       var(--primary-foreground);
+  --color-secondary:                var(--secondary);
+  --color-secondary-foreground:     var(--secondary-foreground);
+  --color-muted:                    var(--muted);
+  --color-muted-foreground:         var(--muted-foreground);
+  --color-accent:                   var(--accent);
+  --color-accent-foreground:        var(--accent-foreground);
+  --color-destructive:              var(--destructive);
+  --color-border:                   var(--border);
+  --color-input:                    var(--input);
+  --color-ring:                     var(--ring);
+  --color-chart-1:                  var(--chart-1);
+  --color-chart-2:                  var(--chart-2);
+  --color-chart-3:                  var(--chart-3);
+  --color-chart-4:                  var(--chart-4);
+  --color-chart-5:                  var(--chart-5);
+  --color-sidebar:                  var(--sidebar);
+  --color-sidebar-foreground:       var(--sidebar-foreground);
+  --color-sidebar-primary:          var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent:           var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border:           var(--sidebar-border);
+  --color-sidebar-ring:             var(--sidebar-ring);
+
+  --font-sans:  'DM Sans', sans-serif;
+  --font-display: 'Syne', sans-serif;
+  --font-mono:  'JetBrains Mono', monospace;
+
+  --radius-sm:  calc(var(--radius) * 0.6);
+  --radius-md:  calc(var(--radius) * 0.8);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* ─────────────────────────────────────────────
+   Dark theme (default — matches File 2's palette)
+   oklch conversions of File 2's hex values:
+     #0A0B0F → oklch(0.09 0.01 264)   canvas
+     #111318 → oklch(0.12 0.01 264)   surface
+     #181B23 → oklch(0.15 0.015 264)  overlay
+     #1E2230 → oklch(0.19 0.02 250)   border
+     #2A3045 → oklch(0.24 0.03 250)   border-bright
+     #F5A623 → oklch(0.75 0.16 70)    amber
+     #F0F2F8 → oklch(0.95 0.005 264)  text-primary
+     #8892A4 → oklch(0.6  0.02  250)  text-secondary
+     #4A5568 → oklch(0.41 0.02  250)  text-muted
+───────────────────────────────────────────── */
+:root {
+  /* ── Backgrounds ── */
+  --background:             oklch(0.09 0.01 264);   /* #0A0B0F canvas */
+  --foreground:             oklch(0.95 0.005 264);  /* #F0F2F8 */
+
+  /* ── Card / Popover ── */
+  --card:                   oklch(0.12 0.01 264);   /* #111318 surface */
+  --card-foreground:        oklch(0.95 0.005 264);
+  --popover:                oklch(0.15 0.015 264);  /* #181B23 overlay */
+  --popover-foreground:     oklch(0.95 0.005 264);
+
+  /* ── Primary = amber ── */
+  --primary:                oklch(0.75 0.16 70);    /* #F5A623 */
+  --primary-foreground:     oklch(0.09 0.01 264);   /* dark text on amber */
+
+  /* ── Secondary ── */
+  --secondary:              oklch(0.15 0.015 264);  /* overlay */
+  --secondary-foreground:   oklch(0.95 0.005 264);
+
+  /* ── Muted ── */
+  --muted:                  oklch(0.19 0.02 250);   /* border level */
+  --muted-foreground:       oklch(0.6 0.02 250);    /* #8892A4 */
+
+  /* ── Accent ── */
+  --accent:                 oklch(0.19 0.02 250);
+  --accent-foreground:      oklch(0.75 0.16 70);    /* amber on dark */
+
+  /* ── Destructive ── */
+  --destructive:            oklch(0.63 0.22 25);    /* red-500 equivalent */
+
+  /* ── Borders / Inputs ── */
+  --border:                 oklch(0.19 0.02 250);   /* #1E2230 */
+  --input:                  oklch(0.24 0.03 250);   /* #2A3045 border-bright */
+  --ring:                   oklch(0.75 0.16 70);    /* amber focus ring */
+
+  /* ── Radius ── */
+  --radius: 0.75rem;
+
+  /* ── Charts (status badge palette) ── */
+  --chart-1:                oklch(0.65 0.15 250);   /* blue  — saved */
+  --chart-2:                oklch(0.60 0.18 295);   /* violet — applied */
+  --chart-3:                oklch(0.75 0.16 70);    /* amber — interview */
+  --chart-4:                oklch(0.65 0.16 160);   /* green — offer */
+  --chart-5:                oklch(0.63 0.22 25);    /* red   — rejected */
+
+  /* ── Sidebar ── */
+  --sidebar:                oklch(0.12 0.01 264);
+  --sidebar-foreground:     oklch(0.95 0.005 264);
+  --sidebar-primary:        oklch(0.75 0.16 70);
+  --sidebar-primary-foreground: oklch(0.09 0.01 264);
+  --sidebar-accent:         oklch(0.19 0.02 250);
+  --sidebar-accent-foreground: oklch(0.95 0.005 264);
+  --sidebar-border:         oklch(0.19 0.02 250);
+  --sidebar-ring:           oklch(0.75 0.16 70);
+
+  /* ── Raw design tokens (for use outside shadcn) ── */
+  --canvas:         oklch(0.09 0.01 264);
+  --surface:        oklch(0.12 0.01 264);
+  --overlay:        oklch(0.15 0.015 264);
+  --border-bright:  oklch(0.24 0.03 250);
+  --amber:          oklch(0.75 0.16 70);
+  --amber-dim:      oklch(0.62 0.14 70);
+  --text-primary:   oklch(0.95 0.005 264);
+  --text-secondary: oklch(0.6 0.02 250);
+  --text-muted:     oklch(0.41 0.02 250);
+}
+
+/* ─────────────────────────────────────────────
+   Light theme override (optional — keeps shadcn
+   light mode working if you ever need it)
+───────────────────────────────────────────── */
+.light {
+  --background:           oklch(1 0 0);
+  --foreground:           oklch(0.145 0 0);
+  --card:                 oklch(1 0 0);
+  --card-foreground:      oklch(0.145 0 0);
+  --popover:              oklch(1 0 0);
+  --popover-foreground:   oklch(0.145 0 0);
+  --primary:              oklch(0.68 0.16 70);
+  --primary-foreground:   oklch(1 0 0);
+  --secondary:            oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted:                oklch(0.97 0 0);
+  --muted-foreground:     oklch(0.556 0 0);
+  --accent:               oklch(0.97 0 0);
+  --accent-foreground:    oklch(0.205 0 0);
+  --destructive:          oklch(0.577 0.245 27.325);
+  --border:               oklch(0.922 0 0);
+  --input:                oklch(0.922 0 0);
+  --ring:                 oklch(0.68 0.16 70);
+  --sidebar:              oklch(0.985 0 0);
+  --sidebar-foreground:   oklch(0.145 0 0);
+  --sidebar-primary:      oklch(0.68 0.16 70);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent:       oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border:       oklch(0.922 0 0);
+  --sidebar-ring:         oklch(0.68 0.16 70);
+}
+
+/* ─────────────────────────────────────────────
+   Base layer
+───────────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+
+  html {
+    @apply font-sans;
+    background-color: var(--canvas);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 20% 0%,  rgba(30, 34, 55, 0.6) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(20, 22, 38, 0.4) 0%, transparent 50%);
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar         { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track   { background: var(--canvas); }
+  ::-webkit-scrollbar-thumb   { background: var(--border-bright); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+  /* ── Selection ── */
+  ::selection { background: oklch(0.75 0.16 70 / 25%); color: var(--text-primary); }
+}
+
+/* ─────────────────────────────────────────────
+   Component utilities
+   (shadcn handles Button/Card/Input as React
+    components — these extras fill the gaps)
+───────────────────────────────────────────── */
+@layer components {
+
+  /* ── Status Badges ── */
+  .badge-saved     { @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium; background: oklch(0.45 0.15 250 / 12%); color: oklch(0.80 0.10 250); border: 1px solid oklch(0.45 0.15 250 / 20%); }
+  .badge-applied   { @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium; background: oklch(0.50 0.18 295 / 12%); color: oklch(0.80 0.12 295); border: 1px solid oklch(0.50 0.18 295 / 20%); }
+  .badge-interview { @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium; background: oklch(0.75 0.16 70  / 12%); color: oklch(0.88 0.14 70);  border: 1px solid oklch(0.75 0.16 70  / 20%); }
+  .badge-offer     { @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium; background: oklch(0.65 0.16 160 / 12%); color: oklch(0.82 0.14 160); border: 1px solid oklch(0.65 0.16 160 / 20%); }
+  .badge-rejected  { @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium; background: oklch(0.63 0.22 25  / 12%); color: oklch(0.80 0.16 25);  border: 1px solid oklch(0.63 0.22 25  / 20%); }
+  .badge-withdrawn { @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium; background: oklch(0.50 0.01 264 / 12%); color: oklch(0.65 0.01 264); border: 1px solid oklch(0.50 0.01 264 / 20%); }
+
+  /* ── Page headings ── */
+  .page-title {
+    @apply text-2xl font-bold tracking-tight;
+    font-family: var(--font-display);
+    color: var(--text-primary);
+  }
+
+  .page-subtitle {
+    @apply text-sm mt-1;
+    color: var(--text-secondary);
+  }
+
+  /* ── Skeleton shimmer ── */
+  .skeleton {
+    @apply rounded-xl;
+    background: linear-gradient(90deg, var(--surface) 25%, var(--overlay) 50%, var(--surface) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    @apply w-full h-px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+
+  /* ── Amber glow line ── */
+  .amber-line {
+    @apply w-12 h-0.5 rounded-full;
+    background: linear-gradient(90deg, var(--amber), transparent);
+  }
+
+  /* ── Noise texture overlay ── */
+  .noise::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 0;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Animations
+───────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Stagger utilities ── */
+.stagger > *:nth-child(1) { animation-delay: 0ms; }
+.stagger > *:nth-child(2) { animation-delay: 60ms; }
+.stagger > *:nth-child(3) { animation-delay: 120ms; }
+.stagger > *:nth-child(4) { animation-delay: 180ms; }
+.stagger > *:nth-child(5) { animation-delay: 240ms; }
+.stagger > *:nth-child(6) { animation-delay: 300ms; }
+
+
+
+
+/* @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
@@ -126,4 +411,4 @@
   html {
     @apply font-sans;
   }
-}
+} */
