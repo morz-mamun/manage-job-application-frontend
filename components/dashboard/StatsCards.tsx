@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { Briefcase, Send, MessageSquare, Trophy, XCircle, TrendingUp } from 'lucide-react'
 import { JobStats } from '@/types'
 

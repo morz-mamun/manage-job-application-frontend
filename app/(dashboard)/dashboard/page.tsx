@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { TopBar } from '@/components/layout/TopBar'
 import { StatsCards } from '@/components/dashboard/StatsCards'
 import { RecentJobs } from '@/components/dashboard/RecentJobs'

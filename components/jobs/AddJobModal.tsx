@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 import { X, Plus, Loader2 } from 'lucide-react'
 import { useCreateJob } from '@/hooks/useJobs'
 

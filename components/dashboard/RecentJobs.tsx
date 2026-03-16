@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { Job } from '@/types'
 import { statusConfig, timeAgo } from '@/lib/utils'
 import { ArrowRight, MapPin, Building2 } from 'lucide-react'

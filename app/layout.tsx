@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { ClerkProvider } from '@clerk/nextjs'
 import { Toaster } from 'react-hot-toast'
-import { ReactQueryProvider } from '@/lib/react-query-provider'
 import './globals.css'
+import { ReactQueryProvider } from '@/lib/react-query-provider'
 
 export const metadata: Metadata = {
   title: 'HuntAI — Your Job Search Command Center',

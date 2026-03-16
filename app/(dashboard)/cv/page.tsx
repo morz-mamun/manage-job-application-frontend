@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { TopBar } from '@/components/layout/TopBar'
 import { useCV, useUpdateCV } from '@/hooks/useCV'
 import { Plus, Trash2, Save, Loader2, Briefcase, GraduationCap, Code2, Wrench, Languages, Award } from 'lucide-react'
